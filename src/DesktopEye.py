@@ -45,17 +45,15 @@ class DesktopEye(object):
         self.dpi = self._calculate_dpi()        
 
         # desktop size
-        self.left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
+        left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
         self.width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
-        self.right = self.left + self.width
+        right = left + self.width
 
-        self.top = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN)
+        top = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN)
         self.height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN)
-        self.bottom = self.top + self.height
+        bottom = top + self.height
 
-        self.left, self.top, self.right, self.bottom = self._transform_as_dpi(
-            (self.left, self.top, self.right, self.bottom))
-        self.position = (self.left, self.top, self.right, self.bottom)
+        self.position = self._transform_as_dpi((left, top, right, bottom))
         self.log("Desktop Size:", self.position)
 
         self.save_dir = os.path.join(project_path, 'data')

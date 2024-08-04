@@ -1,2 +1,10 @@
+# ZoomEye
+pillow>=9.2.0
+pynput>=1.7.6
+
+# 
 olefile>=0.46
+
+# GamepadEye
 selenium
+
